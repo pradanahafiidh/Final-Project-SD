@@ -14,10 +14,10 @@ struct node
     string passwordKaryawan;
     char jenkelKaryawan;
 
-    node *prev,*next;
+    node *next;
 };
 
-node *baru,*head = NULL,*tail = NULL,*hapus,*temp,*temp2;
+node *baru,*head = NULL,*tail = NULL,*hapus,*temp;
 
 
 
@@ -29,12 +29,11 @@ void buatBaru(){
 	cout << "Nama karyawan\t: ";cin >> baru->namaKaryawan;
 	cout << "Alamat karyawan\t: ";cin >> baru->alamatKaryawan;
 	cout << "Username\t: ";cin >> baru->usernameKaryawan;
-	cout << "Password\t: ";cin >> baru->passwordKaryawan;
-	baru->prev=NULL;
-	baru->next=NULL;
+	cout << "Password\t: ";cin >> baru->passwordKaryawan; 
+	baru->next=NULL; 
 } 
 
-void tampil(){ 
+void tampilData(){ 
 	cout << "\nDaftar karyawan."<<endl;
 	cout << "================"<<endl;
 	if (head==NULL)
@@ -55,21 +54,20 @@ void tampil(){
 	getch();
 }
 
-void tambahDepan(){
+void tambahData(){
 	buatBaru();
 	if (head==NULL)
 	{
 		head=baru;
 		tail=baru;
 	}else{
-		tail->next=baru;
-		baru->prev=tail;
+		tail->next=baru; 
 		tail=baru;
 	}
-	tampil();
+	tampilData();
 }
 
-void hapusTertentu()
+void hapusData()
 {
     int jumDat,delPos,poshapus;
     node *hapus,*temp;
@@ -100,6 +98,39 @@ void hapusTertentu()
     }
 }
 
+void cariData(){
+	temp = head;
+	int cariId;
+	cout << "\nId yang dicari\t: ";
+	cin >> cariId;
+	int find = false;
+	if (head != NULL)
+	{
+		while(temp!=NULL)
+		{
+			temp->idKaryawan;
+			if (cariId == temp->idKaryawan)
+			{
+				cout << "\nData ditemukan" <<endl;
+				cout << "Id karyawan\t: " << temp->idKaryawan <<endl;
+				cout << "Nama karyawan\t: " << temp->namaKaryawan <<endl;
+				cout << "Alamat karyawan\t:" << temp->alamatKaryawan <<endl;
+				cout << "Username\t: " << temp->usernameKaryawan <<endl;
+				cout << "Password\t: " << temp->passwordKaryawan <<endl;
+				cout << "\n";
+				find = true;
+			}
+			temp=temp->next;
+		}
+		if (find==false)
+		{
+			cout << "\nData tidak ditemukan";
+		}
+	}
+	else{
+		cout << "\nData masih kosong";
+	}
+}
 
 int main()
 {
@@ -108,20 +139,25 @@ int main()
 	cout << "1. Masukan Data."<<endl;
 	cout << "2. Hapus Data."<<endl;
 	cout << "3. Tampil Data."<<endl;
-	cout << "pilih[1,2,3] : ";
+	cout << "4. Cari Data." <<endl;
+	cout << "pilih[1,2,3,4] : ";
 	cin >> pil;
 	switch(pil){
 		case 1:
-		tambahDepan();
+		tambahData();
 		break;
 		case 2:
-		hapusTertentu();
-		tampil();
+		hapusData();
+		tampilData();
 		case 3:
-		tampil();
+		tampilData();
+		break;
+		case 4:
+		cariData();
+		cin.get();
 		break;
 	}
-}while(pil!=4);
+}while(pil!=5);
 	cin.get();
 	return 0;
 }
