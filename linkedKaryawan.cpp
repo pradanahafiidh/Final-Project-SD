@@ -132,15 +132,44 @@ void cariData(){
 	}
 }
 
+void loginKaryawan(){
+	temp = head;
+	string user,pass;
+	cout << "Username : ";cin >> user;
+	cout << "Password : ";cin >> pass;
+	bool find = false;
+	if (head != NULL)
+	{
+		temp->usernameKaryawan;
+		temp->passwordKaryawan;
+		while(temp!=NULL)
+		{
+			if (user == temp->usernameKaryawan && pass == temp->passwordKaryawan)
+			{
+				cout << "berhasil login.";
+				find = true;
+			}
+			temp=temp->next;
+		}
+		if (find == false)
+		{
+			cout << "\nPassword/Username salah.\n";
+		}
+	}else{
+		cout << "\nbelum ada data masuk.\n";
+	}
+}
+
 int main()
 {
 	int pil;
 	do{
-	cout << "1. Masukan Data."<<endl;
+	cout << "\n1. Masukan Data."<<endl;
 	cout << "2. Hapus Data."<<endl;
 	cout << "3. Tampil Data."<<endl;
 	cout << "4. Cari Data." <<endl;
-	cout << "pilih[1,2,3,4] : ";
+	cout << "5. Login Karyawan." <<endl;
+	cout << "pilih[1,2,3,4,5] : ";
 	cin >> pil;
 	switch(pil){
 		case 1:
@@ -156,8 +185,11 @@ int main()
 		cariData();
 		cin.get();
 		break;
+		case 5:
+		loginKaryawan();
+		break;
 	}
-}while(pil!=5);
+}while(pil!=6);
 	cin.get();
 	return 0;
 }
